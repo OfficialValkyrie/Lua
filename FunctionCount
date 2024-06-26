@@ -1,0 +1,31 @@
+--[[
+
+Do not change anything in the Script.
+It may break if you edit it.
+You can change the Function Names. That wont break it.
+
+Both Local Variables are needed to work, even if the other one looks unused.
+Changing the Function Name: FunctionCalculator also Breaks it.
+I know it should be called: FunctionCount, but that sounded cooler.
+
+You can edit: print(_d, abc) to print(abc)
+and Remove print(a) if you want.
+This will be made cleaner over time.
+
+--]]
+
+function a() end
+function b() end
+function c() end
+
+function FunctionCalculator()
+    local _d = function() end
+    local abc = tostring(_d):sub(-3) == "190" and 3 or ((tostring(_d):sub(-3) == "490") or (tostring(_d):sub(-3) == "460") or (tostring(_d):sub(-3) == "3f0") or (tostring(_d):sub(-3) == "1f0")  and 2) and 2 or ((tostring(_d):sub(-3) == "220") or (tostring(_d):sub(-3) == "320") or (tostring(_d):sub(-3) == "2f0")) and 1 or 0
+    print(_d, abc)
+    local a = tostring(_d):sub(-3) == "c30" and 3 or tostring(_d):sub(-3) == "390" and 2 or tostring(_d):sub(-3) == "220" and 1 or 0
+    return abc
+end
+
+local a = FunctionCalculator()
+
+print(a)
