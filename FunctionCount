@@ -18,11 +18,10 @@ function FunctionCount()
     local Counting = 
     {
         [0] = {"600"}, 
-        [1] = {"180"}, 
-        [2] = {"520", "0b0", "d70"}, 
+        [1] = {"ea0"}, 
+        [2] = {"490"}, 
         [3] = {"c30"}
     }
-    local CurrentCount = 0;
     for i,v in pairs(Counting) do
         for g,s in pairs(v) do
             if s == _d then
