@@ -1,5 +1,5 @@
 # Lua
-In this Reposotory, I will be giving out Scripts that I have coded, because I was Bored.
+In this Repository, I will be giving out Scripts that I have coded, because I was Bored.
 
 If you are going to use these Scripts, please Credit me in the Script you will be implementing them.
 
