@@ -3,9 +3,8 @@
 Lua 5.2 ONLY!
 This is not a Roblox Script, yet.
 
-Do not change anything in the Script.
-It may break if you edit it.
-You can change the Function Names from a,b,c to whatever you desire. That wont break it.
+Do not Change the Do Not Touch Section, it might break the Script.
+You can freely change the function: a,b,c names.
 --]]
 
 --Rename these as you want:
@@ -16,16 +15,22 @@ function c() end
 --Do not Touch:
 function FunctionCount()
     _d = tostring(function() end):sub(-3)
-    local Counting = {[0] = {"600"}, [1] = {"180"}, [2] = {"520", "0b0", "d70"}, [3] = {"c30"}}
+    local Counting = 
+    {
+        [0] = {"600"}, 
+        [1] = {"180"}, 
+        [2] = {"520", "0b0", "d70"}, 
+        [3] = {"c30"}
+    }
     local CurrentCount = 0;
-    for i,v in pairs(Counting) do -- Could had made Faster and Smoother
-        for g,s in pairs(v) do -- Ik I can make this faster by making the loops combined
+    for i,v in pairs(Counting) do
+        for g,s in pairs(v) do
             if s == _d then
-               return i
+                return i
             end
         end
     end
 end
 
 local d = FunctionCount()
-print(d, _d) -- _d needs to be there, or else it would make different function outcomes.
+print(_d and d) -- _d needs to be there, or else it would make different function outcomes.
