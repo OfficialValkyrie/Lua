@@ -1,0 +1,33 @@
+--[[
+
+Lua 5.2 ONLY!
+This is not a Roblox Script, yet.
+
+This is unstable.
+--]]
+
+function CheckType(a)
+    _d = tostring(a):sub(-3)
+    
+    local Counting = 
+    {
+        ["function"] = {"600"}, 
+        ["table"] = {"500"}, 
+        [2] = {"490"}, 
+        [3] = {"c30"}
+    }
+    for i,v in pairs(Counting) do
+        for g,s in pairs(v) do
+            if s == _d then
+                return i
+            end
+        end
+    end
+end
+
+function a() end 
+local b = {}
+
+
+local d = CheckType(a)
+print(_d and d)
