@@ -1,0 +1,75 @@
+local Build = {
+    Mouse = game.Players.LocalPlayer:GetMouse(),
+    Cache = {},
+    Detect = 0,
+    StartTime = tick(),
+    CurrentTime = tick(),
+    --[[
+    The Amount To Detect is in Short the Amount of Duplicate Numbers (Click Speed) to Detect.
+    The less, the worse.
+    The more, the worse.
+    Always stay in the middle with this Option.
+
+    AmountToDetect = 10 (SizeToDetect = 4) == ~30 Seconds to Detect
+    AmountToDetect = 20 (SizeToDetect = 4) == ~1 Minute to Detect
+    ]]
+    AmountToDetect = 10,
+    --[[
+    (100 milliseconds Auto Clicker Test)
+    
+    ~0.5 Second (0)
+    ~1 Second (1)
+    ~2.5 Seconds (2)
+    ~5 Seconds (3)
+    ~25 Seconds (4)
+    ~4 Minutes (5)
+
+    0-3 will Detect Non-Auto Clickers too.
+    4 is able to Detect Non-Auto Clickers too, but it would be intentially, it is a whole 25 Seconds.
+    5 has a late respond to detecting, but works. (This should be Near Impossible for Drag Clickers to be Detected as Auto Clicker. Someone would need a steady hand for ~4 Minutes Straight.)
+    ]]
+    SizeToDetect = 4
+}
+
+--Optimal Settings: AmountToDetect: 10, SizeToDetect: 4. The Result would be: ~30 Seconds to Detect an 100 Milliseconds Auto Clicker.
+
+--[[
+5 Minutes == 1000 Milliseconds -- Untested, only a Theory.
+30 Seconds == 100 Milliseconds -- Tested
+15 Seconds == 50 Milliseconds  -- Tested
+0.3 Seconds == 1 Milliseconds  -- Untested, only a Theory.
+]]
+
+
+T = tick()
+
+local function MultipleValues(tbl)
+    local occurrences = {}
+    for i, v in ipairs(tbl) do
+        occurrences[v] = (occurrences[v] or 0) + 1
+    end    
+    for v, Count in pairs(occurrences) do
+        if Count > Build.AmountToDetect then
+            return v
+        end
+    end
+end
+
+Build.Mouse.Button1Down:Connect(function()
+    Build.CurrentTime = tick()
+end)
+
+Build.Mouse.Button1Up:Connect(function()
+    local ElapsedTime = Build.CurrentTime - Build.StartTime
+    ElapsedTime = string.format("%."..tostring(Build.SizeToDetect).."f", ElapsedTime)
+    table.insert(Build.Cache, ElapsedTime)
+    print("Seconds elapsed: " .. ElapsedTime)
+    Build.CurrentTime = tick()
+    Build.StartTime = tick()
+    Build.Detect = MultipleValues(Build.Cache)
+
+    if Build.Detect then
+        game.Players.LocalPlayer:Kick("Auto Clicker Detected, Seconds:", Build.Detect)
+        print("Time until getting Kicked because of Detected Auto Clicker: " .. tick() - T)
+    end
+end)
