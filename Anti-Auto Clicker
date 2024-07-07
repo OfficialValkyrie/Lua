@@ -63,13 +63,13 @@ Build.Mouse.Button1Up:Connect(function()
     local ElapsedTime = Build.CurrentTime - Build.StartTime
     ElapsedTime = string.format("%."..tostring(Build.SizeToDetect).."f", ElapsedTime)
     table.insert(Build.Cache, ElapsedTime)
-    print("Seconds elapsed: " .. ElapsedTime)
+    --print("Seconds elapsed: " .. ElapsedTime)
     Build.CurrentTime = tick()
     Build.StartTime = tick()
     Build.Detect = MultipleValues(Build.Cache)
 
     if Build.Detect then
         game.Players.LocalPlayer:Kick("Auto Clicker Detected, Seconds:", Build.Detect)
-        print("Time until getting Kicked because of Detected Auto Clicker: " .. tick() - T)
+        --print("Time until getting Kicked because of Detected Auto Clicker: " .. tick() - T)
     end
 end)
