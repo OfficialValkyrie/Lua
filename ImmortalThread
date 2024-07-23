@@ -7,7 +7,7 @@
 	]]
 	
 	local co;
-	local function ImortalThread()
+	local function ImmortalThread()
 		co = coroutine.running()
 		coroutine.resume(coroutine.create(function()  -- Creates a seperate Thread to run it in so it will never stop unless that Thread is closed.
 			while true do -- A while loop.
@@ -23,7 +23,7 @@
 		co = nil -- Nils what 'co' is. 'co' is set globally to be the current running Thread.
 	end
 
-	ImortalThread() -- Immune to Yielding
+	ImmortalThread() -- Immune to Yielding
 	coroutine.yield()
 	print("test1")
 	coroutine.yield()
