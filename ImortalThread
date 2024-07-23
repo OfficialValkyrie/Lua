@@ -1,0 +1,32 @@
+	--[[
+	The only way to Close the Thread is to use the close function
+	
+	coroutine.running():close()
+	
+	Yielding wont work.
+	]]
+	
+	local co;
+	local function ImortalThread()
+		co = coroutine.running()
+		coroutine.resume(coroutine.create(function()  -- Creates a seperate Thread to run it in so it will never stop unless that Thread is closed.
+			while true do -- A while loop.
+				if co and coroutine.status(co) ~= "dead" then -- Checking if our Thread exists and is not dead.
+					coroutine.resume(co) -- Resumes the Thread if its dead.
+				else break end -- Breaks from the while loop if its not dead.
+				task.wait() -- Simple Wait
+			end
+		end))
+	end
+
+	local function MortalThread()
+		co = nil -- Nils what 'co' is. 'co' is set globally to be the current running Thread.
+	end
+
+	ImortalThread() -- Immune to Yielding
+	coroutine.yield()
+	print("test1")
+	coroutine.yield()
+	print("test2")
+	MortalThread() -- Not Immune to Yielding
+	print("test3")
