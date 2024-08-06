@@ -253,7 +253,7 @@ function BasicRemoteSpy.Log(...)
     TB.Visible = true
     TB.Text = "      "..Remote.Name
 
-    local fullPath = "game"..Remote:GetFullName()
+    local fullPath = "game."..Remote:GetFullName()
     local function tos(t, i)
         i = i or 0
         local s = string.rep(" ", i) .. "{\n"
